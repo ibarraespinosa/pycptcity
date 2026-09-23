@@ -31,8 +31,8 @@ The classic gradients from the [cpt-city archive](https://phillips.shef.ac.uk/pu
 | `show_cpt(names)` | Displays palettes side-by-side as colour bars |
 | `lucky()` | Random palette — "I'm Feeling Lucky" for colours |
 
-```python
-pip install pycptcity
+```bash
+pip install git+https://github.com/ibarraespinosa/pycptcity
 ```
 
 ```python
@@ -241,9 +241,13 @@ From 1920s Gatsby to 2020s gradient design. Each era's aesthetic distilled into 
 ## Installation
 
 ```bash
-pip install pycptcity
-# or from GitHub
 pip install git+https://github.com/ibarraespinosa/pycptcity
+```
+
+To update to the latest version:
+
+```bash
+pip install --upgrade git+https://github.com/ibarraespinosa/pycptcity
 ```
 
 ```python
@@ -260,7 +264,7 @@ cols = cpt("mpl_inferno")
 
 ## Dependencies
 
-None (stdlib only). `show_cpt` needs matplotlib — install with `pip install pycptcity[plot]`.
+None (stdlib only). `show_cpt` needs matplotlib — install with `pip install "git+https://github.com/ibarraespinosa/pycptcity[plot]"`.
 
 ---
 

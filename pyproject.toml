@@ -26,6 +26,7 @@ test = ["pytest", "matplotlib>=3.5"]
 
 [project.urls]
 Homepage = "https://github.com/ibarraespinosa/pycptcity"
+Repository = "https://github.com/ibarraespinosa/pycptcity"
 Issues = "https://github.com/ibarraespinosa/pycptcity/issues"
 
 [tool.setuptools.packages.find]

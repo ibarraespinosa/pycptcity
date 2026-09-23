@@ -1,5 +1,9 @@
 """pycptcity: cpt-city colour gradients for Python / plotnine.
 
+Install::
+
+    pip install git+https://github.com/ibarraespinosa/pycptcity
+
 Quick start::
 
     from pycptcity import cpt, find_cpt, lucky, show_cpt
@@ -11,7 +15,7 @@ Quick start::
 plotnine::
 
     from plotnine import scale_colour_gradientn, scale_fill_gradientn
-    + scale_fill_gradientn(colours = cpt("mpl_inferno", n = 256))
+    + scale_fill_gradientn(colors = cpt("mpl_inferno", n = 256))
 """
 
 from .api import cpt, cpt_names, find_cpt, lucky, show_cpt
