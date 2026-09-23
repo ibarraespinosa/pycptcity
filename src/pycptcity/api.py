@@ -1,6 +1,8 @@
 import random as _random
 import re as _re
 
+import numpy as _np
+
 from . import _data
 from ._color import color_ramp_palette, rgb_to_hex_round
 
@@ -118,10 +120,13 @@ def show_cpt(x, label=True):
 
     fig, axes = plt.subplots(nrow, ncol, figsize=(ncol * 1.2, nrow * 0.6))
     axes = axes.flatten() if nx > 1 else [axes]
+    from matplotlib.colors import to_rgb
+
     for i, name in enumerate(x):
         cols = cpt(name, n=50)
+        rgb = np.array([[to_rgb(c) for c in cols]])
         ax = axes[i]
-        ax.imshow([cols], aspect="auto", interpolation="nearest")
+        ax.imshow(rgb, aspect="auto", interpolation="nearest")
         ax.set_xticks([])
         ax.set_yticks([])
         if label:

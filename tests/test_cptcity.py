@@ -91,15 +91,18 @@ class TestFindCpt:
 
 
 class TestNoaa:
-    """NOAA-themed palettes (author works for NOAA)."""
+    """NOAA palettes (author works for NOAA)."""
 
     EXPECTED = [
-        "space_noaa", "space_noaa_storm",
-        "space_noaa_nws", "space_noaa_nhc", "space_noaa_nexrad",
-        "space_noaa_goes", "space_noaa_buoy", "space_noaa_ncei",
-        "space_noaa_nmfs", "space_noaa_jetstream", "space_noaa_tornado",
-        "space_noaa_wind_chill", "space_noaa_heat_index", "space_noaa_coastal",
+        "noaa", "noaa_storm",
+        "noaa_nws", "noaa_nhc", "noaa_nexrad",
+        "noaa_goes", "noaa_buoy", "noaa_ncei",
+        "noaa_nmfs", "noaa_jetstream", "noaa_tornado",
+        "noaa_wind_chill", "noaa_heat_index", "noaa_coastal",
     ]
+
+    def test_no_space_prefix(self):
+        assert not [n for n in cpt_names() if n.startswith("space_noaa")]
 
     def test_discoverable(self):
         found = find_cpt("noaa")
@@ -112,28 +115,33 @@ class TestNoaa:
             assert len(cols) == 10
             assert all(len(c) == 7 and c[0] == "#" for c in cols), name
 
-    def test_space_nws_is_noaa_navy_to_white(self):
-        cols = cpt("space_noaa_nws", n=2)
+    def test_noaa_uses_emblem_blues_and_whites(self):
+        cols = cpt("noaa", n=5)
+        assert cols[0].upper() == "#0B2D72"  # emblem deep navy sea
+        assert cols[-1].upper() == "#FFFFFF"  # emblem white gull
+
+    def test_nws_is_noaa_navy_to_white(self):
+        cols = cpt("noaa_nws", n=2)
         assert cols[0].upper() == "#0B2D72"  # NOAA navy
         assert cols[1].upper() == "#F7FBFF"  # near-white
 
     def test_nhc_follows_saffir_simpson(self):
-        cols = cpt("space_noaa_nhc", n=5)
+        cols = cpt("noaa_nhc", n=5)
         assert cols[0].upper() == "#2ECC71"   # cat 1 green
         assert cols[-1].upper() == "#8E44AD"  # cat 5 magenta
 
     def test_nexrad_radar_scale(self):
-        cols = cpt("space_noaa_nexrad", n=7)
+        cols = cpt("noaa_nexrad", n=7)
         assert cols[0].upper() == "#00FFFF"   # low dBZ cyan
         assert cols[-1].upper() == "#FFFFFF"  # extreme white
 
     def test_wind_chill_cold_to_coldest(self):
-        cols = cpt("space_noaa_wind_chill", n=2)
+        cols = cpt("noaa_wind_chill", n=2)
         assert cols[0].upper() == "#FFFFFF"   # mild white
         assert cols[1].upper() == "#0B2D72"   # deep cold navy
 
     def test_colorrampalette(self):
-        for name in ("space_noaa_nhc", "space_noaa_nexrad", "space_noaa_goes"):
+        for name in ("noaa_nhc", "noaa_nexrad", "noaa_goes"):
             fun = cpt(name, colorrampalette=True)
             assert callable(fun)
             assert len(fun(5)) == 5

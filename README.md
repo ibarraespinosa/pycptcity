@@ -53,35 +53,48 @@ show_cpt(find_cpt("spider_miles"))
 
 ## NOAA palettes — 14 ramps for Earth science
 
-Built for NOAA work: NWS forecasting, NHC hurricanes, NEXRAD radar, GOES satellites,
+NOAA stands for the National Oceanographic and Atmospheric Administration —
+there is nothing space about it, so the ramps are named `noaa_*`. Built for
+NOAA work: NWS forecasting, NHC hurricanes, NEXRAD radar, GOES satellites,
 NDBC buoys, NCEI climate, NMFS fisheries, and more.
+
+The `noaa` palette itself uses the colours of the NOAA emblem: deep navy sea,
+NOAA blue sky, light and pale blues, and the white gull. A simplified,
+non-official emblem drawn in Python and in R:
+
+![NOAA emblem drawn in Python](man/figures/noaa_emblem_python.png)
+
+![NOAA emblem drawn in R](man/figures/noaa_emblem_r.png)
 
 ```python
 from pycptcity import cpt, find_cpt
 
 find_cpt("noaa")
-# ['space_noaa', 'space_noaa_storm', 'space_noaa_nws', 'space_noaa_nhc',
-#  'space_noaa_nexrad', 'space_noaa_goes', 'space_noaa_buoy', 'space_noaa_ncei',
-#  'space_noaa_nmfs', 'space_noaa_jetstream', 'space_noaa_tornado',
-#  'space_noaa_wind_chill', 'space_noaa_heat_index', 'space_noaa_coastal']
+# ['noaa', 'noaa_storm', 'noaa_nws', 'noaa_nhc',
+#  'noaa_nexrad', 'noaa_goes', 'noaa_buoy', 'noaa_ncei',
+#  'noaa_nmfs', 'noaa_jetstream', 'noaa_tornado',
+#  'noaa_wind_chill', 'noaa_heat_index', 'noaa_coastal']
+
+# NOAA emblem blues and whites (navy -> blue -> pale -> white gull)
+cols = cpt("noaa", n = 256)
 ```
 
 | Palette | What it is |
 |---|---|
-| `space_noaa` | NOAA blue — navy to sea mist (the classic) |
-| `space_noaa_storm` | NOAA storm — deep blue through warning orange |
-| `space_noaa_nws` | **National Weather Service** — NOAA navy, sky blue, white |
-| `space_noaa_nhc` | **National Hurricane Center** — Saffir-Simpson green→yellow→orange→red→magenta |
-| `space_noaa_nexrad` | **NEXRAD radar** — dBZ reflectivity cyan→green→yellow→orange→red→magenta→white |
-| `space_noaa_goes` | **GOES satellite** — deep space, ocean, atmosphere, cloud white |
-| `space_noaa_buoy` | **NDBC buoy** — deep ocean to sea foam |
-| `space_noaa_ncei` | **NCEI climate** — anomaly cool blue → white → warm red |
-| `space_noaa_nmfs` | **NMFS fisheries** — deep sea, kelp green, surface gold |
-| `space_noaa_jetstream` | **Jet stream** — polar blue → temperate → tropical red |
-| `space_noaa_tornado` | **Tornado warning** — dark to warning yellow to red |
-| `space_noaa_wind_chill` | **Wind chill** — white to ice to deep cold navy |
-| `space_noaa_heat_index` | **Heat index** — mild yellow to extreme maroon |
-| `space_noaa_coastal` | **NOS coastal** — sand, shallow teal, deep blue |
+| `noaa` | NOAA emblem — deep navy sea, blue sky, pale blues, white gull |
+| `noaa_storm` | NOAA storm — deep blue through warning orange |
+| `noaa_nws` | **National Weather Service** — NOAA navy, sky blue, white |
+| `noaa_nhc` | **National Hurricane Center** — Saffir-Simpson green→yellow→orange→red→magenta |
+| `noaa_nexrad` | **NEXRAD radar** — dBZ reflectivity cyan→green→yellow→orange→red→magenta→white |
+| `noaa_goes` | **GOES satellite** — deep space, ocean, atmosphere, cloud white |
+| `noaa_buoy` | **NDBC buoy** — deep ocean to sea foam |
+| `noaa_ncei` | **NCEI climate** — anomaly cool blue → white → warm red |
+| `noaa_nmfs` | **NMFS fisheries** — deep sea, kelp green, surface gold |
+| `noaa_jetstream` | **Jet stream** — polar blue → temperate → tropical red |
+| `noaa_tornado` | **Tornado warning** — dark to warning yellow to red |
+| `noaa_wind_chill` | **Wind chill** — white to ice to deep cold navy |
+| `noaa_heat_index` | **Heat index** — mild yellow to extreme maroon |
+| `noaa_coastal` | **NOS coastal** — sand, shallow teal, deep blue |
 
 ```python
 from plotnine import ggplot, aes, geom_raster, scale_fill_gradientn
@@ -90,15 +103,15 @@ from pycptcity import cpt
 # Hurricane categories on a map
 (ggplot(df, aes("lon", "lat", fill = "wind_speed"))
  + geom_raster()
- + scale_fill_gradientn(colors = cpt("space_noaa_nhc", n = 256)))
+ + scale_fill_gradientn(colors = cpt("noaa_nhc", n = 256)))
 
 # Radar reflectivity
 (ggplot(radar, aes("x", "y", fill = "dbz"))
  + geom_raster()
- + scale_fill_gradientn(colors = cpt("space_noaa_nexrad", n = 256)))
+ + scale_fill_gradientn(colors = cpt("noaa_nexrad", n = 256)))
 
 # Climate anomaly
-scale_fill_gradientn(colors = cpt("space_noaa_ncei", n = 256))
+scale_fill_gradientn(colors = cpt("noaa_ncei", n = 256))
 ```
 
 ---
@@ -280,7 +293,7 @@ From 1920s Gatsby to 2020s gradient design. Each era's aesthetic distilled into 
 
 | Prefix | Palettes | Example |
 |---|---|---|
-| `space_noaa_` | 14 | `space_noaa_nws`, `space_noaa_nhc`, `space_noaa_nexrad`, `space_noaa_goes` |
+| `noaa_` | 14 | `noaa_nws`, `noaa_nhc`, `noaa_nexrad`, `noaa_goes` |
 | `book_` | 14 | `book_dune_arrakis`, `book_neuromancer`, `book_1984_orwell` |
 | `cyber_` | 7 | `cyber_2077_night_city`, `cyber_blade_runner`, `cyber_matrix` |
 | `cinema_` | 8 | `cinema_mgm_lion`, `cinema_technicolor`, `cinema_film_noir` |
@@ -341,7 +354,7 @@ plus an install-from-GitHub-URL smoke test on each OS.
 | **macOS** | ✅ |
 | **Windows** | ✅ |
 
-Each job runs **29 tests** that verify byte-identical colour output against R's
+Each job runs **31 tests** that verify byte-identical colour output against R's
 `grDevices::colorRampPalette`, plus a plotnine integration smoke test
 (`scale_fill_gradientn(colors = cpt(...))`).  The badge above shows live
 pass/fail for the latest commit — click through for per-job logs and the
@@ -365,5 +378,5 @@ GPL-3 — Palettes retain their original licenses (documented in the [cpt-city a
 ---
 
 <p align="center">
-  <sub>Made with <code>cpt("space_noaa_nhc")</code> — <a href="https://phillips.shef.ac.uk/pub/cpt-city/">cpt-city archive</a> — 7,716 gradients and counting — <i>What's Up Danger?</i></sub>
+  <sub>Made with <code>cpt("noaa_nhc")</code> — <a href="https://phillips.shef.ac.uk/pub/cpt-city/">cpt-city archive</a> — 7,716 gradients and counting — <i>What's Up Danger?</i></sub>
 </p>
