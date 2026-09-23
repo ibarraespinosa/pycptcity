@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pycptcity"
+version = "2.3.0"
+description = "cpt-city colour gradients for Python / plotnine"
+readme = "README.md"
+license = { text = "GPL-3.0-only" }
+authors = [
+    { name = "Sergio Ibarra-Espinosa", email = "sergio.ibarra-espinosa@noaa.gov" },
+]
+requires-python = ">=3.9"
+dependencies = []
+keywords = ["colours", "colors", "palettes", "cpt-city", "plotnine", "ggplot2", "gradients"]
+classifiers = [
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Visualization",
+]
+
+[project.optional-dependencies]
+plot = ["matplotlib>=3.5"]
+test = ["pytest", "matplotlib>=3.5"]
+
+[project.urls]
+Homepage = "https://github.com/ibarraespinosa/pycptcity"
+Issues = "https://github.com/ibarraespinosa/pycptcity/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+pycptcity = ["data/*.json.gz"]
