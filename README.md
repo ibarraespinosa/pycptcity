@@ -2,6 +2,7 @@
 
 **7,704 colour palettes for Python — from scientific gradients to the Spider-Verse.**
 
+[![Tests](https://github.com/ibarraespinosa/pycptcity/actions/workflows/tests.yml/badge.svg)](https://github.com/ibarraespinosa/pycptcity/actions/workflows/tests.yml)
 [![License: GPL-3](https://img.shields.io/badge/License-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 ---
@@ -265,6 +266,33 @@ cols = cpt("mpl_inferno")
 ## Dependencies
 
 None (stdlib only). `show_cpt` needs matplotlib — install with `pip install "git+https://github.com/ibarraespinosa/pycptcity[plot]"`.
+
+---
+
+## Platform support
+
+Live status: [![Tests](https://github.com/ibarraespinosa/pycptcity/actions/workflows/tests.yml/badge.svg)](https://github.com/ibarraespinosa/pycptcity/actions/workflows/tests.yml)
+
+Every push runs the full test suite on **3 operating systems × 3 Python versions**
+plus an install-from-GitHub-URL smoke test on each OS.
+
+| OS | Python 3.9 | Python 3.11 | Python 3.12 |
+|---|:---:|:---:|:---:|
+| **Linux** (ubuntu-latest) | ✅ | ✅ | ✅ |
+| **macOS** (macos-latest) | ✅ | ✅ | ✅ |
+| **Windows** (windows-latest) | ✅ | ✅ | ✅ |
+
+| OS | `pip install git+…/pycptcity` |
+|---|:---:|
+| **Linux** | ✅ |
+| **macOS** | ✅ |
+| **Windows** | ✅ |
+
+Each job runs **22 tests** that verify byte-identical colour output against R's
+`grDevices::colorRampPalette`, plus a plotnine integration smoke test
+(`scale_fill_gradientn(colors = cpt(...))`).  The badge above shows live
+pass/fail for the latest commit — click through for per-job logs and the
+step summary.
 
 ---
 

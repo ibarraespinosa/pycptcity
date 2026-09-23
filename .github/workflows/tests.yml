@@ -1,0 +1,80 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: ${{ matrix.os }} / py${{ matrix.python-version }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: ["3.9", "3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install package
+        run: python -m pip install . pytest
+
+      - name: Run tests
+        run: python -m pytest tests/ -v --tb=short
+
+      - name: Smoke test import
+        run: |
+          python -c "import pycptcity; print('version:', pycptcity.__version__); print('palettes:', len(pycptcity.cpt_names()))"
+          python -c "from pycptcity import cpt; cols = cpt('mpl_inferno', 5); print(cols); assert len(cols) == 5"
+
+      - name: Smoke test plotnine integration
+        run: |
+          python -m pip install plotnine matplotlib
+          python -c "from pycptcity import cpt; from plotnine import scale_fill_gradientn; s = scale_fill_gradientn(colors=cpt('mpl_inferno', n=32)); print('scale OK:', type(s).__name__)"
+
+      - name: Write job summary
+        if: always()
+        shell: bash
+        run: |
+          status="${{ job.status }}"
+          icon="✅"
+          if [ "$status" != "success" ]; then icon="❌"; fi
+          echo "### $icon ${{ matrix.os }} / Python ${{ matrix.python-version }} — $status" >> "$GITHUB_STEP_SUMMARY"
+
+  install-from-github:
+    name: install from GitHub URL
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install documented command
+        shell: bash
+        run: |
+          python -m pip install "git+https://github.com/ibarraespinosa/pycptcity@${GITHUB_SHA}"
+          python -c "from pycptcity import cpt; print(cpt('spider_miles_leap_of_faith', 3))"
+
+      - name: Write job summary
+        if: always()
+        shell: bash
+        run: |
+          status="${{ job.status }}"
+          icon="✅"
+          if [ "$status" != "success" ]; then icon="❌"; fi
+          echo "### $icon ${{ matrix.os }} / install from GitHub URL — $status" >> "$GITHUB_STEP_SUMMARY"
