@@ -90,6 +90,55 @@ class TestFindCpt:
         assert find_cpt("zzz_nonexistent_xyz") == []
 
 
+class TestNoaa:
+    """NOAA-themed palettes (author works for NOAA)."""
+
+    EXPECTED = [
+        "space_noaa", "space_noaa_storm",
+        "space_noaa_nws", "space_noaa_nhc", "space_noaa_nexrad",
+        "space_noaa_goes", "space_noaa_buoy", "space_noaa_ncei",
+        "space_noaa_nmfs", "space_noaa_jetstream", "space_noaa_tornado",
+        "space_noaa_wind_chill", "space_noaa_heat_index", "space_noaa_coastal",
+    ]
+
+    def test_discoverable(self):
+        found = find_cpt("noaa")
+        for name in self.EXPECTED:
+            assert name in found, name
+
+    def test_all_render(self):
+        for name in self.EXPECTED:
+            cols = cpt(name, n=10)
+            assert len(cols) == 10
+            assert all(len(c) == 7 and c[0] == "#" for c in cols), name
+
+    def test_space_nws_is_noaa_navy_to_white(self):
+        cols = cpt("space_noaa_nws", n=2)
+        assert cols[0].upper() == "#0B2D72"  # NOAA navy
+        assert cols[1].upper() == "#F7FBFF"  # near-white
+
+    def test_nhc_follows_saffir_simpson(self):
+        cols = cpt("space_noaa_nhc", n=5)
+        assert cols[0].upper() == "#2ECC71"   # cat 1 green
+        assert cols[-1].upper() == "#8E44AD"  # cat 5 magenta
+
+    def test_nexrad_radar_scale(self):
+        cols = cpt("space_noaa_nexrad", n=7)
+        assert cols[0].upper() == "#00FFFF"   # low dBZ cyan
+        assert cols[-1].upper() == "#FFFFFF"  # extreme white
+
+    def test_wind_chill_cold_to_coldest(self):
+        cols = cpt("space_noaa_wind_chill", n=2)
+        assert cols[0].upper() == "#FFFFFF"   # mild white
+        assert cols[1].upper() == "#0B2D72"   # deep cold navy
+
+    def test_colorrampalette(self):
+        for name in ("space_noaa_nhc", "space_noaa_nexrad", "space_noaa_goes"):
+            fun = cpt(name, colorrampalette=True)
+            assert callable(fun)
+            assert len(fun(5)) == 5
+
+
 class TestLucky:
     def test_reproducible(self):
         a = lucky(1, message=False, nseed=1)
@@ -108,7 +157,7 @@ class TestLucky:
 
 class TestNames:
     def test_count(self):
-        assert len(cpt_names()) == 7704
+        assert len(cpt_names()) == 7716
 
     def test_contains_known(self):
         names = cpt_names()

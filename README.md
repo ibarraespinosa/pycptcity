@@ -1,6 +1,6 @@
 # pycptcity <img src="man/figures/hero_banner.png" align="right" width="50%" alt="pycptcity hero banner" />
 
-**7,704 colour palettes for Python — from scientific gradients to the Spider-Verse.**
+**7,716 colour palettes for Python — from scientific gradients to the Spider-Verse.**
 
 [![Tests](https://github.com/ibarraespinosa/pycptcity/actions/workflows/tests.yml/badge.svg)](https://github.com/ibarraespinosa/pycptcity/actions/workflows/tests.yml)
 [![License: GPL-3](https://img.shields.io/badge/License-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
@@ -9,13 +9,13 @@
 
 > *"When do I know I'm Spider-Man?" — "You won't. It's a leap of faith. That's all it is, Miles. A leap of faith."*
 >
-> **pycptcity** brings the iconic visual energy of *Into the Spider-Verse* directly into Python! With **7,704 colour gradients** — including **63 dedicated Spider-Verse palettes** — you can render maps, spatial rasters, and plots in the exact colour spectrums of Miles Morales, Earth-1610, Gwen Stacy, and the Multiverse.
+> **pycptcity** brings the iconic visual energy of *Into the Spider-Verse* directly into Python! With **7,716 colour gradients** — including **63 dedicated Spider-Verse palettes** and **14 NOAA palettes** — you can render maps, spatial rasters, and plots in the exact colour spectrums of Miles Morales, Earth-1610, Gwen Stacy, and the Multiverse.
 
 ---
 
 ## What's inside
 
-The classic gradients from the [cpt-city archive](https://phillips.shef.ac.uk/pub/cpt-city/) — plus **hundreds of curated palettes** across 26 categories: art, architecture, decades, books, cyberpunk, space agencies, video games, cinema, music, anime, cities, mythology, science, Brazil, films, gemstones, weather, comics, food, albums, photography, and the entire **Spider-Verse.**
+The classic gradients from the [cpt-city archive](https://phillips.shef.ac.uk/pub/cpt-city/) — plus **hundreds of curated palettes** across 26 categories: art, architecture, decades, books, cyberpunk, space agencies, **NOAA**, video games, cinema, music, anime, cities, mythology, science, Brazil, films, gemstones, weather, comics, food, albums, photography, and the entire **Spider-Verse.**
 
 <p align="center">
   <img src="man/figures/category_grid.png" width="100%" alt="All categories grid" />
@@ -28,7 +28,7 @@ The classic gradients from the [cpt-city archive](https://phillips.shef.ac.uk/pu
 | Function | What it does |
 |---|---|
 | `cpt(pal, n, colorrampalette, rev, frgb)` | Returns a colour gradient — list of hex strings or a ramp function |
-| `find_cpt(keyword)` | Searches 7704 palette names (case-insensitive) |
+| `find_cpt(keyword)` | Searches 7716 palette names (case-insensitive) |
 | `show_cpt(names)` | Displays palettes side-by-side as colour bars |
 | `lucky()` | Random palette — "I'm Feeling Lucky" for colours |
 
@@ -47,6 +47,58 @@ cols = cpt("spider_miles_leap_of_faith", n = 100)
 
 # Preview Spider-Verse palettes
 show_cpt(find_cpt("spider_miles"))
+```
+
+---
+
+## NOAA palettes — 14 ramps for Earth science
+
+Built for NOAA work: NWS forecasting, NHC hurricanes, NEXRAD radar, GOES satellites,
+NDBC buoys, NCEI climate, NMFS fisheries, and more.
+
+```python
+from pycptcity import cpt, find_cpt
+
+find_cpt("noaa")
+# ['space_noaa', 'space_noaa_storm', 'space_noaa_nws', 'space_noaa_nhc',
+#  'space_noaa_nexrad', 'space_noaa_goes', 'space_noaa_buoy', 'space_noaa_ncei',
+#  'space_noaa_nmfs', 'space_noaa_jetstream', 'space_noaa_tornado',
+#  'space_noaa_wind_chill', 'space_noaa_heat_index', 'space_noaa_coastal']
+```
+
+| Palette | What it is |
+|---|---|
+| `space_noaa` | NOAA blue — navy to sea mist (the classic) |
+| `space_noaa_storm` | NOAA storm — deep blue through warning orange |
+| `space_noaa_nws` | **National Weather Service** — NOAA navy, sky blue, white |
+| `space_noaa_nhc` | **National Hurricane Center** — Saffir-Simpson green→yellow→orange→red→magenta |
+| `space_noaa_nexrad` | **NEXRAD radar** — dBZ reflectivity cyan→green→yellow→orange→red→magenta→white |
+| `space_noaa_goes` | **GOES satellite** — deep space, ocean, atmosphere, cloud white |
+| `space_noaa_buoy` | **NDBC buoy** — deep ocean to sea foam |
+| `space_noaa_ncei` | **NCEI climate** — anomaly cool blue → white → warm red |
+| `space_noaa_nmfs` | **NMFS fisheries** — deep sea, kelp green, surface gold |
+| `space_noaa_jetstream` | **Jet stream** — polar blue → temperate → tropical red |
+| `space_noaa_tornado` | **Tornado warning** — dark to warning yellow to red |
+| `space_noaa_wind_chill` | **Wind chill** — white to ice to deep cold navy |
+| `space_noaa_heat_index` | **Heat index** — mild yellow to extreme maroon |
+| `space_noaa_coastal` | **NOS coastal** — sand, shallow teal, deep blue |
+
+```python
+from plotnine import ggplot, aes, geom_raster, scale_fill_gradientn
+from pycptcity import cpt
+
+# Hurricane categories on a map
+(ggplot(df, aes("lon", "lat", fill = "wind_speed"))
+ + geom_raster()
+ + scale_fill_gradientn(colors = cpt("space_noaa_nhc", n = 256)))
+
+# Radar reflectivity
+(ggplot(radar, aes("x", "y", fill = "dbz"))
+ + geom_raster()
+ + scale_fill_gradientn(colors = cpt("space_noaa_nexrad", n = 256)))
+
+# Climate anomaly
+scale_fill_gradientn(colors = cpt("space_noaa_ncei", n = 256))
 ```
 
 ---
@@ -228,6 +280,7 @@ From 1920s Gatsby to 2020s gradient design. Each era's aesthetic distilled into 
 
 | Prefix | Palettes | Example |
 |---|---|---|
+| `space_noaa_` | 14 | `space_noaa_nws`, `space_noaa_nhc`, `space_noaa_nexrad`, `space_noaa_goes` |
 | `book_` | 14 | `book_dune_arrakis`, `book_neuromancer`, `book_1984_orwell` |
 | `cyber_` | 7 | `cyber_2077_night_city`, `cyber_blade_runner`, `cyber_matrix` |
 | `cinema_` | 8 | `cinema_mgm_lion`, `cinema_technicolor`, `cinema_film_noir` |
@@ -288,7 +341,7 @@ plus an install-from-GitHub-URL smoke test on each OS.
 | **macOS** | ✅ |
 | **Windows** | ✅ |
 
-Each job runs **22 tests** that verify byte-identical colour output against R's
+Each job runs **29 tests** that verify byte-identical colour output against R's
 `grDevices::colorRampPalette`, plus a plotnine integration smoke test
 (`scale_fill_gradientn(colors = cpt(...))`).  The badge above shows live
 pass/fail for the latest commit — click through for per-job logs and the
@@ -312,5 +365,5 @@ GPL-3 — Palettes retain their original licenses (documented in the [cpt-city a
 ---
 
 <p align="center">
-  <sub>Made with <code>cpt("spider_miles_morales")</code> — <a href="https://phillips.shef.ac.uk/pub/cpt-city/">cpt-city archive</a> — 7,704 gradients and counting — <i>What's Up Danger?</i></sub>
+  <sub>Made with <code>cpt("space_noaa_nhc")</code> — <a href="https://phillips.shef.ac.uk/pub/cpt-city/">cpt-city archive</a> — 7,716 gradients and counting — <i>What's Up Danger?</i></sub>
 </p>
