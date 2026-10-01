@@ -75,7 +75,7 @@ cols = cpt("noaa", n = 256)
 |---|---|
 | `noaa` | NOAA brand blues — #003087 → #0085CA → white |
 | `noaa_storm` | NOAA storm — deep blue through warning orange |
-| `noaa_nws` | **National Weather Service** — NOAA navy, sky blue, white |
+| `noaa_nws` | **National Weather Service** — brand blue to logo red (#003087 → #CE0F3E) |
 | `noaa_nhc` | **National Hurricane Center** — Saffir-Simpson green→yellow→orange→red→magenta |
 | `noaa_nexrad` | **NEXRAD radar** — dBZ reflectivity cyan→green→yellow→orange→red→magenta→white |
 | `noaa_goes` | **GOES satellite** — deep space, ocean, atmosphere, cloud white |

@@ -123,10 +123,13 @@ class TestNoaa:
             "#003087", "#0085CA", "#FFFFFF",  # dark, Pantone Process Blue, white
         ]
 
-    def test_nws_is_noaa_navy_to_white(self):
+    def test_nws_runs_brand_blue_to_logo_red(self):
+        assert [c.upper() for c in cpt("noaa_nws", n=5)] == [
+            "#003087", "#1F4FA2", "#BFEAFB", "#FFFFFF", "#CE0F3E",
+        ]  # NWS logo: brand dark, badge blue, cloud pale, white, logo red
         cols = cpt("noaa_nws", n=2)
-        assert cols[0].upper() == "#0B2D72"  # NOAA navy
-        assert cols[1].upper() == "#F7FBFF"  # near-white
+        assert cols[0].upper() == "#003087"
+        assert cols[1].upper() == "#CE0F3E"
 
     def test_nhc_follows_saffir_simpson(self):
         cols = cpt("noaa_nhc", n=5)

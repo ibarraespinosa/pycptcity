@@ -20,5 +20,5 @@ plotnine::
 
 from .api import cpt, cpt_names, find_cpt, lucky, show_cpt
 
-__version__ = "2.3.1"
+__version__ = "2.3.2"
 __all__ = ["cpt", "find_cpt", "lucky", "show_cpt", "cpt_names", "__version__"]
