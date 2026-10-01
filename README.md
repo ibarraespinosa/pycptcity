@@ -67,13 +67,13 @@ find_cpt("noaa")
 #  'noaa_nmfs', 'noaa_jetstream', 'noaa_tornado',
 #  'noaa_wind_chill', 'noaa_heat_index', 'noaa_coastal']
 
-# deep navy to blue to pale to white
+# NOAA brand blues: dark #003087, light #0085CA, white
 cols = cpt("noaa", n = 256)
 ```
 
 | Palette | What it is |
 |---|---|
-| `noaa` | Deep navy → blue → pale → white |
+| `noaa` | NOAA brand blues — #003087 → #0085CA → white |
 | `noaa_storm` | NOAA storm — deep blue through warning orange |
 | `noaa_nws` | **National Weather Service** — NOAA navy, sky blue, white |
 | `noaa_nhc` | **National Hurricane Center** — Saffir-Simpson green→yellow→orange→red→magenta |

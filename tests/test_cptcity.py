@@ -115,10 +115,13 @@ class TestNoaa:
             assert len(cols) == 10
             assert all(len(c) == 7 and c[0] == "#" for c in cols), name
 
-    def test_noaa_uses_emblem_blues_and_whites(self):
+    def test_noaa_uses_official_brand_blues_and_white(self):
         cols = cpt("noaa", n=5)
-        assert cols[0].upper() == "#0B2D72"  # emblem deep navy sea
-        assert cols[-1].upper() == "#FFFFFF"  # emblem white gull
+        assert cols[0].upper() == "#003087"  # NOAA dark blue, Pantone 287 C
+        assert cols[-1].upper() == "#FFFFFF"
+        assert [c.upper() for c in cpt("noaa", n=3)] == [
+            "#003087", "#0085CA", "#FFFFFF",  # dark, Pantone Process Blue, white
+        ]
 
     def test_nws_is_noaa_navy_to_white(self):
         cols = cpt("noaa_nws", n=2)
