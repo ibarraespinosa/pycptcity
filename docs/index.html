@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>pycptcity — 7,716 colour palettes for Python</title>
+<meta name="description" content="pycptcity brings 7,716 cpt-city colour gradients to Python — Spider-Verse, NOAA, scientific, art, games. Four functions. plotnine-ready." />
+<meta property="og:title" content="pycptcity — 7,716 colour palettes for Python" />
+<meta property="og:description" content="Scientific gradients to the Spider-Verse. Four functions. plotnine-ready." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='0'%3E%3Cstop offset='0' stop-color='%23e62429'/%3E%3Cstop offset='.5' stop-color='%231e6bb8'/%3E%3Cstop offset='1' stop-color='%237fb2e5'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='url(%23g)'/%3E%3C/svg%3E" />
+<style>
+:root{
+  --bg:#0a0e1a; --bg2:#0f1528; --card:#141b32; --card2:#1a2340;
+  --line:rgba(255,255,255,.09); --txt:#eef2ff; --mut:#9aa6c7; --mut2:#6b7699;
+  --red:#e62429; --blue:#2f7fe0; --sky:#7fb2e5; --gold:#f5b942;
+  --radius:14px; --max:1120px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--txt);font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55}
+a{color:var(--sky)}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+/* nav */
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(10,14,26,.82);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;gap:14px;height:60px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px;text-decoration:none;color:var(--txt)}
+.dot{width:26px;height:26px;border-radius:8px;background:linear-gradient(90deg,#e62429,#1e6bb8,#7fb2e5,#fff)}
+.nav-links{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap}
+.nav-links a{color:var(--mut);text-decoration:none;font-size:14px;padding:8px 11px;border-radius:9px}
+.nav-links a:hover{color:var(--txt);background:rgba(255,255,255,.06)}
+.btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;color:#0a0e1a;font-weight:700;border-radius:11px;padding:10px 16px;text-decoration:none;font-size:14px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--txt)}
+.btn.ghost:hover{background:rgba(255,255,255,.07)}
+.btn.small{padding:7px 11px;font-size:13px;border-radius:9px}
+/* hero */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);background:radial-gradient(900px 400px at 15% -10%,rgba(230,36,41,.22),transparent 60%),radial-gradient(800px 420px at 90% 0%,rgba(47,127,224,.28),transparent 60%),var(--bg)}
+.hero-in{padding:64px 0 34px;display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:center}
+@media(max-width:900px){.hero-in{grid-template-columns:1fr;padding-top:40px}}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#ffd7d7;background:rgba(230,36,41,.14);border:1px solid rgba(230,36,41,.35);padding:6px 11px;border-radius:999px}
+h1{font-size:clamp(34px,5vw,56px);line-height:1.04;margin:16px 0 12px;letter-spacing:-1.5px}
+h1 .grad{background:linear-gradient(90deg,#ff5a5a,#f5b942,#7fb2e5,#fff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{color:var(--mut);font-size:17px;max-width:56ch;margin:0 0 20px}
+.cta{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.code-pill{display:flex;align-items:center;gap:10px;background:#05070f;border:1px solid var(--line);border-radius:11px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;color:#d6def7;margin-top:14px;max-width:100%;overflow:auto}
+.code-pill button{margin-left:auto}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:22px}
+@media(max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:12px;padding:12px 13px}
+.stat b{font-size:21px;display:block}
+.stat span{color:var(--mut);font-size:12.5px}
+.hero-card{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.hero-card img{width:100%;display:block}
+.hero-bar{height:14px;background:linear-gradient(90deg,#0B2D72,#1E6BB8,#7FB2E5,#fff,#e62429,#f5b942)}
+.hero-card .pad{padding:14px 16px}
+.hero-card .pad small{color:var(--mut)}
+.ticker{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.ticker span{font-size:12px;color:var(--mut);border:1px solid var(--line);padding:4px 9px;border-radius:999px;background:rgba(255,255,255,.03)}
+/* sections */
+section{padding:44px 0}
+.sec-head{display:flex;align-items:end;gap:14px;margin-bottom:16px;flex-wrap:wrap}
+.sec-head h2{margin:0;font-size:26px;letter-spacing:-.5px}
+.sec-head p{margin:0;color:var(--mut);max-width:70ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:transform .12s ease,border-color .12s}
+.card:hover{transform:translateY(-2px);border-color:rgba(127,178,229,.45)}
+.sw{height:64px}
+.card .meta{padding:10px 12px;display:flex;align-items:center;gap:8px}
+.card .meta code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;color:#dbe4ff;word-break:break-all}
+.icon-btn{margin-left:auto;flex:none;background:rgba(255,255,255,.07);border:1px solid var(--line);color:var(--txt);border-radius:8px;padding:5px 9px;font-size:12px;cursor:pointer}
+.icon-btn:hover{background:rgba(255,255,255,.14)}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+.toolbar input,.toolbar select{background:#05070f;border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:10px 12px;font-size:14px}
+.toolbar input{flex:1;min-width:220px}
+.hint{color:var(--mut2);font-size:13px;margin:8px 0 0}
+/* playground */
+.play{background:var(--bg2);border:1px solid var(--line);border-radius:18px;padding:20px;display:grid;grid-template-columns:320px 1fr;gap:20px}
+@media(max-width:900px){.play{grid-template-columns:1fr}}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:12.5px;color:var(--mut);margin-bottom:6px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.field select,.field input[type=number]{width:100%;background:#05070f;border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:10px 12px;font-size:14px}
+input[type=range]{width:100%}
+.row{display:flex;gap:10px;align-items:center}
+.check{display:flex;gap:8px;align-items:center;font-size:14px;color:var(--mut)}
+.big-sw{height:110px;border-radius:12px;border:1px solid var(--line)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.chip{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;background:#05070f;border:1px solid var(--line);border-radius:8px;padding:5px 8px;cursor:pointer;color:#d6def7}
+.chip:hover{border-color:var(--sky)}
+.tabs{display:flex;gap:6px;margin:14px 0 8px}
+.tab{background:transparent;border:1px solid var(--line);color:var(--mut);border-radius:9px;padding:7px 12px;font-size:13px;cursor:pointer}
+.tab.active{background:#fff;color:#0a0e1a;font-weight:700}
+pre{background:#05070f;border:1px solid var(--line);border-radius:12px;padding:14px;overflow:auto;font-size:13px;line-height:1.5;margin:0}
+pre code{color:#dbe4ff;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+/* feature */
+.feat{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+@media(max-width:900px){.feat{grid-template-columns:1fr}}
+.feat img{width:100%;border-radius:14px;border:1px solid var(--line);display:block}
+table{width:100%;border-collapse:collapse;font-size:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+th,td{text-align:left;padding:11px 13px;border-bottom:1px solid var(--line)}
+th{color:var(--mut);font-size:12.5px;text-transform:uppercase;letter-spacing:.5px}
+tr:last-child td{border-bottom:0}
+td code{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;background:rgba(255,255,255,.07);padding:2px 6px;border-radius:6px}
+/* modal */
+.modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(3,5,12,.72);backdrop-filter:blur(6px);z-index:99;padding:18px}
+.modal.open{display:flex}
+.sheet{background:var(--card2);border:1px solid var(--line);border-radius:18px;max-width:720px;width:100%;max-height:88vh;overflow:auto;padding:20px}
+.sheet h3{margin:0 0 4px;font-family:ui-monospace,Menlo,monospace;font-size:18px}
+.sheet .sub{color:var(--mut);font-size:13px;margin:0 0 12px}
+.sheet .big-sw{height:90px}
+.x{float:right}
+/* footer */
+footer{border-top:1px solid var(--line);padding:28px 0 46px;color:var(--mut);font-size:13.5px}
+footer .wrap{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+footer .sp{margin-left:auto}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#fff;color:#0a0e1a;font-weight:700;font-size:13px;padding:10px 16px;border-radius:999px;display:none;z-index:200}
+.badge-live{font-size:12px;color:#9fe6a0}
+</style>
+</head>
+<body>
+<div class="toast" id="toast">copied</div>
+
+<header class="nav"><div class="wrap nav-in">
+  <a class="brand" href="#top"><span class="dot"></span> pycptcity</a>
+  <nav class="nav-links">
+    <a href="#explore">Palettes</a>
+    <a href="#playground">Playground</a>
+    <a href="#noaa">NOAA</a>
+    <a href="#spider">Spider-Verse</a>
+    <a href="#install">Install</a>
+    <a href="https://github.com/ibarraespinosa/pycptcity" target="_blank" rel="noopener">GitHub ↗</a>
+  </nav>
+</div></header>
+
+<div class="hero" id="top"><div class="wrap hero-in">
+  <div>
+    <span class="kicker">✦ 7,716 palettes · cpt-city for Python</span>
+    <h1>Every gradient.<br /><span class="grad">From science to the Spider-Verse.</span></h1>
+    <p class="lede">The classic <a href="https://phillips.shef.ac.uk/pub/cpt-city/">cpt-city archive</a> plus hundreds of curated ramps — <b style="color:#fff">63 Spider-Verse</b> and <b style="color:#fff">14 NOAA</b> palettes. Four functions. plotnine-ready. No required dependencies.</p>
+    <div class="cta">
+      <a class="btn" href="#explore">Explore palettes ↓</a>
+      <a class="btn ghost" href="#playground">Open playground</a>
+    </div>
+    <div class="code-pill"><span id="pip-cmd">pip install git+https://github.com/ibarraespinosa/pycptcity</span><button class="btn small ghost" onclick="copyText(document.getElementById('pip-cmd').innerText)">copy</button></div>
+    <div class="stats">
+      <div class="stat"><b>7,716</b><span>colour palettes</span></div>
+      <div class="stat"><b>63</b><span>Spider-Verse</span></div>
+      <div class="stat"><b>14</b><span>NOAA ramps</span></div>
+      <div class="stat"><b>4</b><span>functions. That's it.</span></div>
+    </div>
+  </div>
+  <div class="hero-card">
+    <div class="hero-bar"></div>
+    <img src="img/category_grid.png" alt="All palette categories" loading="lazy" onerror="this.style.display='none'" />
+    <div class="pad"><small>26 categories — art · space · games · cinema · NOAA · comics · weather · Spider-Verse…</small>
+      <div class="ticker"><span>noaa_nhc</span><span>spider_miles_leap_of_faith</span><span>mpl_inferno</span><span>noaa_nexrad</span><span>spider_gwen</span></div>
+    </div>
+  </div>
+</div></div>
+
+<div class="wrap">
+<section id="explore">
+  <div class="sec-head"><h2>Explore all 7,716 palettes</h2><p id="count">loading palettes.json…</p></div>
+  <div class="toolbar">
+    <input id="q" type="search" placeholder="Search — try miles, noaa, inferno, radar, gogh, dune…" autocomplete="off" />
+    <select id="cat" title="Category (prefix)"><option value="">all categories</option></select>
+  </div>
+  <div class="grid" id="grid"></div>
+  <p class="hint" id="more-wrap"><button class="btn small ghost" id="more">Show more</button> <span id="shown"></span></p>
+</section>
+
+<section id="playground">
+  <div class="sec-head"><h2>Playground</h2><p>Pick a palette, set <code>n</code>, flip <code>rev</code> — preview the ramp and copy Python / R code.</p></div>
+  <div class="play">
+    <div>
+      <div class="field"><label>Palette</label><select id="p-pal"></select></div>
+      <div class="field"><label>Colours: <span id="p-n-lab">100</span></label><input id="p-n" type="range" min="3" max="256" value="100" /></div>
+      <div class="field row"><label class="check"><input id="p-rev" type="checkbox" /> rev (reversed)</label>
+        <button class="btn small ghost" id="p-lucky">🎲 lucky()</button></div>
+      <div class="field"><button class="btn small" id="p-copy">Copy hex list</button></div>
+    </div>
+    <div>
+      <div class="big-sw" id="p-sw"></div>
+      <div class="chips" id="p-chips"></div>
+      <div class="tabs"><button class="tab active" data-t="py">Python</button><button class="tab" data-t="r">R</button><button class="tab" data-t="px">plotnine</button></div>
+      <pre><code id="p-code"></code></pre>
+    </div>
+  </div>
+</section>
+
+<section id="noaa">
+  <div class="sec-head"><h2>NOAA — 14 ramps for Earth science</h2><p>NWS forecasting · NHC hurricanes · NEXRAD radar · GOES satellites · NDBC buoys · NCEI climate · NMFS fisheries. Built from the NOAA emblem blues: <code>#0B2D72 #1E6BB8 #7FB2E5 #FFFFFF</code>.</p></div>
+  <div class="feat">
+    <div><img src="img/noaa_emblem_python.png" alt="NOAA emblem drawn in Python" loading="lazy" onerror="this.style.display='none'"/>
+    <pre style="margin-top:12px"><code>from pycptcity import cpt, find_cpt
+find_cpt("noaa")
+# 14 ramps: noaa, noaa_storm, noaa_nws, noaa_nhc,
+# noaa_nexrad, noaa_goes, noaa_buoy, noaa_ncei,
+# noaa_nmfs, noaa_jetstream, noaa_tornado,
+# noaa_wind_chill, noaa_heat_index, noaa_coastal
+cols = cpt("noaa_nhc", n=256)</code></pre></div>
+    <div><div class="grid" id="noaa-grid" style="grid-template-columns:1fr"></div></div>
+  </div>
+</section>
+
+<section id="spider">
+  <div class="sec-head"><h2>Spider-Verse spotlight — 63 palettes</h2><p>Every dimension has its own colour language. Earth-65 breathes pinks and teals · Noir lives in monochrome · 2099 runs on cyber-blue. <i>“What's up, danger?”</i></p></div>
+  <img src="img/spider_showcase.png" alt="Spider-Verse showcase" style="width:100%;border-radius:14px;border:1px solid var(--line)" loading="lazy" onerror="this.style.display='none'"/>
+  <div class="toolbar"><input id="sq" type="search" placeholder="Filter Spider-Verse — try miles, gwen, noir, venom, portal…" /></div>
+  <div class="grid" id="spider-grid"></div>
+  <p class="hint">Heroes · Family &amp; Allies · Villains · Dimensions &amp; Worlds · Cosmic &amp; Effects — all 63 searchable above and in the explorer with <code>spider_</code>.</p>
+</section>
+
+<section id="use">
+  <div class="sec-head"><h2>Four functions. That's it.</h2></div>
+  <table>
+    <tr><th>Function</th><th>What it does</th><th>Example</th></tr>
+    <tr><td><code>cpt(pal, n, …)</code></td><td>Returns a gradient — list of hex or a ramp function</td><td><code>cpt("spider_miles_leap_of_faith", n=100)</code></td></tr>
+    <tr><td><code>find_cpt(keyword)</code></td><td>Searches 7,716 names (case-insensitive)</td><td><code>find_cpt("miles")</code></td></tr>
+    <tr><td><code>show_cpt(names)</code></td><td>Displays palettes as colour bars (matplotlib)</td><td><code>show_cpt(find_cpt("spider_miles"))</code></td></tr>
+    <tr><td><code>lucky()</code></td><td>Random palette — “I'm Feeling Lucky”</td><td><code>lucky(nseed=42)</code></td></tr>
+  </table>
+  <div class="feat" style="margin-top:16px">
+    <pre><code>from plotnine import ggplot, aes, geom_raster, scale_fill_gradientn
+from pycptcity import cpt
+
+(ggplot(df, aes("lon", "lat", fill="wind_speed"))
+ + geom_raster()
+ + scale_fill_gradientn(colors=cpt("noaa_nhc", n=256)))</code></pre>
+    <pre><code>from pycptcity import cpt, find_cpt, lucky, show_cpt
+
+find_cpt("miles")
+# ['spider_miles_morales', 'spider_miles_graffiti',
+#  'spider_miles_leap_of_faith']
+
+cols = cpt("spider_miles_leap_of_faith", n=100)
+show_cpt(find_cpt("spider_miles"))</code></pre>
+  </div>
+</section>
+
+<section id="install">
+  <div class="sec-head"><h2>Installation</h2><p>Stdlib only — <code>show_cpt</code> needs matplotlib. <span class="badge-live">● live CI: Linux · macOS · Windows × Python 3.9 / 3.11 / 3.12</span></p></div>
+  <div class="feat">
+    <pre><code># install
+pip install git+https://github.com/ibarraespinosa/pycptcity
+
+# update
+pip install --upgrade git+https://github.com/ibarraespinosa/pycptcity
+
+# with plotting support
+pip install "pycptcity[plot] @ git+https://github.com/ibarraespinosa/pycptcity"</code></pre>
+    <pre><code># R sibling package (cptcity)
+install.packages("remotes")
+remotes::install_github("ibarraespinosa/cptcity")
+library(cptcity)
+cpt("noaa", n = 256)</code></pre>
+  </div>
+</section>
+</div>
+
+<footer><div class="wrap">
+  <span><b style="color:#fff">pycptcity</b> · GPL-3 · palettes retain original cpt-city licenses · <a href="https://phillips.shef.ac.uk/pub/cpt-city/">cpt-city archive</a></span>
+  <span class="sp">Made with <code>cpt("noaa_nhc")</code> · <a href="https://github.com/ibarraespinosa/pycptcity">GitHub</a> · <i>What's Up Danger?</i></span>
+</div></footer>
+
+<div class="modal" id="modal"><div class="sheet">
+  <button class="btn small ghost x" onclick="closeModal()">✕ close</button>
+  <h3 id="m-name"></h3>
+  <p class="sub" id="m-sub"></p>
+  <div class="big-sw" id="m-sw"></div>
+  <div class="chips" id="m-chips"></div>
+  <pre style="margin-top:12px"><code id="m-code"></code></pre>
+  <div class="row" style="margin-top:12px"><button class="btn small" id="m-copy">Copy Python</button><button class="btn small ghost" id="m-open-play">Open in playground →</button></div>
+</div></div>
+
+<script>
+const $ = s => document.querySelector(s);
+let PAL = {}; let NAMES = []; let FILTERED = []; let shown = 0; const PAGE = 60;
+
+function toast(msg){ const t=$("#toast"); t.textContent=msg; t.style.display="block"; clearTimeout(t._h); t._h=setTimeout(()=>t.style.display="none",1400); }
+function copyText(s){ (navigator.clipboard?navigator.clipboard.writeText(s):Promise.reject()).then(()=>toast("copied ✓")).catch(()=>{ const ta=document.createElement("textarea"); ta.value=s; document.body.appendChild(ta); ta.select(); try{document.execCommand("copy");toast("copied ✓");}catch(e){toast("copy failed");} ta.remove(); }); }
+const grad = cols => `linear-gradient(90deg, ${cols.join(",")})`;
+function hexLerp(a,b,t){ const p=h=>[parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)]; const A=p(a),B=p(b); const m=A.map((v,i)=>Math.round(v+(B[i]-v)*t)); return "#"+m.map(v=>v.toString(16).padStart(2,"0")).toUpperCase(); }
+function interp(cols,n){ if(cols.length>=n) return cols.slice(0,n); if(cols.length===1) return Array(n).fill(cols[0]); const out=[]; const segs=cols.length-1; for(let i=0;i<n;i++){ const x=i/(n-1)*segs; const j=Math.min(Math.floor(x),segs-1); out.push(hexLerp(cols[j],cols[j+1],x-j)); } return out; }
+function revOf(c,r){ return r?[...c].reverse():c; }
+
+async function load(){
+  const res = await fetch("palettes.json");
+  PAL = await res.json();
+  NAMES = Object.keys(PAL).sort();
+  $("#count").textContent = NAMES.length.toLocaleString()+" palettes · "+new Set(NAMES.map(n=>n.split("_")[0])).size+" categories · search or filter below";
+  // categories
+  const cats = [...new Set(NAMES.map(n=>n.split("_")[0]))].sort();
+  const sel = $("#cat");
+  cats.forEach(c=>{ const n=NAMES.filter(x=>x.split("_")[0]===c).length; const o=document.createElement("option"); o.value=c; o.textContent=`${c} (${n})`; sel.appendChild(o); });
+  // playground select
+  const psel=$("#p-pal");
+  const feat=["spider_miles_leap_of_faith","spider_gwen","noaa_nhc","noaa_nexrad","noaa","mpl_inferno","mpl_viridis"];
+  const ordered=[...feat.filter(f=>PAL[f]),...NAMES.filter(n=>!feat.includes(n))];
+  ordered.forEach(n=>{ const o=document.createElement("option"); o.value=n; o.textContent=n; psel.appendChild(o); });
+  applyFilter(); renderNoaa(); renderSpider(""); updatePlay();
+}
+function applyFilter(){
+  const q=$("#q").value.trim().toLowerCase(), c=$("#cat").value;
+  FILTERED=NAMES.filter(n=>(!c||n.split("_")[0]===c)&&(!q||n.toLowerCase().includes(q)));
+  shown=0; $("#grid").innerHTML="";
+  $("#shown").textContent=` — showing 0 of ${FILTERED.length.toLocaleString()}`;
+  showMore();
+}
+function card(n){
+  const cols=PAL[n]; const d=document.createElement("div"); d.className="card";
+  d.innerHTML=`<div class="sw"></div><div class="meta"><code></code><button class="icon-btn">copy</button></div>`;
+  d.querySelector(".sw").style.background=grad(cols);
+  d.querySelector("code").textContent=n;
+  d.querySelector(".icon-btn").onclick=e=>{e.stopPropagation();copyText(`cpt("${n}", n=256)`);};
+  d.onclick=()=>openModal(n);
+  return d;
+}
+function showMore(){
+  const g=$("#grid"); const next=FILTERED.slice(shown,shown+PAGE);
+  next.forEach(n=>g.appendChild(card(n))); shown+=next.length;
+  $("#shown").textContent=` — showing ${shown.toLocaleString()} of ${FILTERED.length.toLocaleString()}`;
+  $("#more").style.display=shown<FILTERED.length?"":"none";
+}
+const NOAA=["noaa","noaa_storm","noaa_nws","noaa_nhc","noaa_nexrad","noaa_goes","noaa_buoy","noaa_ncei","noaa_nmfs","noaa_jetstream","noaa_tornado","noaa_wind_chill","noaa_heat_index","noaa_coastal"];
+const NOAA_DESC={noaa:"NOAA emblem — navy sea, blue sky, white gull",noaa_storm:"storm — deep blue through warning orange",noaa_nws:"National Weather Service — navy, sky, white",noaa_nhc:"National Hurricane Center — Saffir-Simpson",noaa_nexrad:"NEXRAD radar — dBZ reflectivity",noaa_goes:"GOES satellite — space, ocean, cloud",noaa_buoy:"NDBC buoy — deep ocean to sea foam",noaa_ncei:"NCEI climate — blue → white → red",noaa_nmfs:"NMFS fisheries — sea, kelp, gold",noaa_jetstream:"jet stream — polar blue to tropical red",noaa_tornado:"tornado warning — dark to yellow to red",noaa_wind_chill:"wind chill — white to ice to navy",noaa_heat_index:"heat index — mild yellow to maroon",noaa_coastal:"NOS coastal — sand, teal, deep blue"};
+function renderNoaa(){ const g=$("#noaa-grid"); g.innerHTML=""; NOAA.filter(n=>PAL[n]).forEach(n=>{ const c=card(n); const tag=document.createElement("div"); tag.style.cssText="padding:0 12px 12px;color:var(--mut);font-size:12.5px"; tag.textContent=NOAA_DESC[n]||""; c.appendChild(tag); g.appendChild(c); }); }
+function renderSpider(q){ const g=$("#spider-grid"); g.innerHTML=""; const list=NAMES.filter(n=>n.startsWith("spider_")&&(!q||n.includes(q))).slice(0,120); list.forEach(n=>g.appendChild(card(n))); if(!list.length) g.innerHTML="<p class='hint'>No matches — try miles, gwen, noir, venom…</p>"; }
+// playground
+function updatePlay(){
+  const name=$("#p-pal").value||"spider_miles_leap_of_faith"; const n=+$("#p-n").value; const r=$("#p-rev").checked;
+  $("#p-n-lab").textContent=n;
+  const base=revOf(PAL[name]||["#000"],r); const full=interp(base,n);
+  $("#p-sw").style.background=grad(full);
+  const chips=$("#p-chips"); chips.innerHTML="";
+  const step=Math.max(1,Math.floor(full.length/16)); 
+  full.filter((_,i)=>i%step===0).slice(0,16).forEach(h=>{ const s=document.createElement("span"); s.className="chip"; s.textContent=h; s.onclick=()=>copyText(h); chips.appendChild(s); });
+  const tab=document.querySelector(".tab.active").dataset.t;
+  $("#p-code").textContent = tab==="r" ? `library(cptcity)\ncols <- cpt("${name}", n = ${n}${r?", rev = TRUE":""})`
+    : tab==="px" ? `from plotnine import scale_fill_gradientn\nfrom pycptcity import cpt\n\nscale_fill_gradientn(colors=cpt("${name}", n=${n}${r?", rev=True":""}))`
+    : `from pycptcity import cpt\n\ncols = cpt("${name}", n=${n}${r?", rev=True":""})\n# ${full.slice(0,4).join(" ")} … (${n} colours)`;
+}
+// modal
+let MODAL_N=null;
+function openModal(n){ MODAL_N=n; const cols=PAL[n];
+  $("#m-name").textContent=n; $("#m-sub").textContent=`${cols.length}-step preview · click a hex to copy`;
+  $("#m-sw").style.background=grad(cols);
+  const ch=$("#m-chips"); ch.innerHTML=""; cols.forEach(h=>{ const s=document.createElement("span"); s.className="chip"; s.textContent=h; s.onclick=()=>copyText(h); ch.appendChild(s); });
+  $("#m-code").textContent=`from pycptcity import cpt\ncols = cpt("${n}", n=256)\n# R: library(cptcity); cols <- cpt("${n}", n = 256)`;
+  $("#modal").classList.add("open");
+}
+function closeModal(){ $("#modal").classList.remove("open"); }
+$("#modal").addEventListener("click",e=>{ if(e.target.id==="modal") closeModal(); });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeModal(); });
+$("#m-copy").onclick=()=>copyText(`from pycptcity import cpt\ncols = cpt("${MODAL_N}", n=256)`);
+$("#m-open-play").onclick=()=>{ $("#p-pal").value=MODAL_N; closeModal(); document.getElementById("playground").scrollIntoView({behavior:"smooth"}); updatePlay(); };
+// events
+$("#q").addEventListener("input",()=>applyFilter());
+$("#cat").addEventListener("change",()=>applyFilter());
+$("#more").onclick=showMore;
+$("#sq").addEventListener("input",e=>renderSpider(e.target.value.trim().toLowerCase()));
+["p-pal","p-n","p-rev"].forEach(id=>$("#"+id).addEventListener("input",updatePlay));
+$("#p-lucky").onclick=()=>{ $("#p-pal").value=NAMES[Math.floor(Math.random()*NAMES.length)]; updatePlay(); toast("feeling lucky: "+$("#p-pal").value); };
+$("#p-copy").onclick=()=>{ const n=+$("#p-n").value,r=$("#p-rev").checked,name=$("#p-pal").value; copyText(JSON.stringify(interp(revOf(PAL[name],r),n))); };
+document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{ document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active")); t.classList.add("active"); updatePlay(); });
+load().catch(e=>{ $("#count").textContent="Could not load palettes.json — "+e; });
+</script>
+</body>
+</html>
